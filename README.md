@@ -45,4 +45,3 @@ Make sure you have the following installed:
 To install on Ubuntu-based systems:
 ```bash
 sudo apt-get install freeglut3-dev
-
