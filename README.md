@@ -42,3 +42,22 @@ Make sure you have the following installed (if not then click on the link):
 
 - [C++ compiler](https://sourceforge.net/projects/mingw-w64/) (e.g., g++)
 - [GLUT or FreeGLUT](https://www.transmissionzero.co.uk/software/freeglut-devel/)
+
+---
+
+## Creators
+- [Prince Gadara](https://github.com/PrinceGadara1)
+- [Jay Vaghela](https://github.com/202401237)
+- [Kush Gandhi](https://github.com/kushgandhi123) 
+- [Shubh Goyani](https://github.com/Shubh-Goyani)
+- **For Contributing in This Game**:
+   1. Fork the repository.
+   2. Create a new branch: `git checkout -b feature-name`.
+   3. Make your changes.
+   4. Push your branch: `git push origin feature-name`.
+   5. Create a pull request.
+
+---
+
+### "In a maze full of monsters 👾, keep moving 🏃‍♂️, keep munching 🍒, and never let fear block your path 💥."
+### - Binary Brains
