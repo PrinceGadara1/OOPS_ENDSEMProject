@@ -15,6 +15,16 @@ A simple but fun Pac-Man style game built using **C++** and **OpenGL**, created 
 
 ---
 
+## 📸 Screenshots
+
+<img src="screenshots/gameplay1.png" width="400"/>
+<br/>
+<img src="screenshots/gameplay2.png" width="400"/>
+<br/>
+<img src="screenshots/gameplay3.png" width="400"/>
+
+---
+
 ## 🧠 How It Works
 
 - **Player**: Controlled using arrow keys (or WASD), moves smoothly on a 2D grid.
@@ -35,3 +45,4 @@ Make sure you have the following installed:
 To install on Ubuntu-based systems:
 ```bash
 sudo apt-get install freeglut3-dev
+
