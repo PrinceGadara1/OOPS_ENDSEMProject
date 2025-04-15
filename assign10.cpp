@@ -422,7 +422,7 @@ void resultsDisplay(){
 		glRasterPos2f(170, 550);
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
-		message = "You didn't eat all the food, now Packman is hungry!";
+		message = "You didn't eat all the food, now Pacman is hungry!";
 		glRasterPos2f(155, 480); // Position for the notice
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
@@ -478,7 +478,7 @@ void welcomeScreen(){
 	glRasterPos2f(240, 150); // Position for the fun message
 	while (*message)
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
-	message = "Note: Take care of our Packman!";
+	message = "Note: Take care of our Pacman!";
 	glRasterPos2f(240, 600); // Position for the notice
 	while (*message)
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
