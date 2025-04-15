@@ -230,6 +230,46 @@ void keyUp(unsigned char key, int x, int y){
 	keyStates[key] = false;
 }
 
+//Method to handle special keys pressed
+void specialKeyPressed(int key, int x, int y) {
+    switch (key) {
+        case GLUT_KEY_LEFT: // Left arrow key
+            keyStates['a'] = true;
+            break;
+        case GLUT_KEY_RIGHT: // Right arrow key
+            keyStates['d'] = true;
+            break;
+        case GLUT_KEY_UP: // Up arrow key
+            keyStates['w'] = true;
+            break;
+        case GLUT_KEY_DOWN: // Down arrow key
+            keyStates['s'] = true;
+            break;
+        default:
+            break;
+    }
+}
+
+//Method to handle special keys released
+void specialKeyUp(int key, int x, int y) {
+    switch (key) {
+        case GLUT_KEY_LEFT: // Left arrow key
+            keyStates['a'] = false;
+            break;
+        case GLUT_KEY_RIGHT: // Right arrow key
+            keyStates['d'] = false;
+            break;
+        case GLUT_KEY_UP: // Up arrow key
+            keyStates['w'] = false;
+            break;
+        case GLUT_KEY_DOWN: // Down arrow key
+            keyStates['s'] = false;
+            break;
+        default:
+            break;
+    }
+}
+
 //Method to reset all the variable necessaries to start the game again
 void resetGame(){
 	over = false;
@@ -342,6 +382,10 @@ void resultsDisplay(){
 		glRasterPos2f(170, 350);
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
+		message = "YeSS..!!, I knew you can do it!";
+		glRasterPos2f(260, 400); // Position for the notice
+		while (*message)
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
 		message = "To start or restart the game, press the space key.";
 		glRasterPos2f(170, 550);
 		while (*message)
@@ -362,20 +406,28 @@ void resultsDisplay(){
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
 		message = "You got: ";
-		glRasterPos2f(260, 400);
+		glRasterPos2f(262, 400);
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
 		string result = to_string(points);
 		message = (char*)result.c_str();
-		glRasterPos2f(350, 400);
+		glRasterPos2f(352, 400);
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
-		message = " points!";
-		glRasterPos2f(385, 400);
+		message = "points!";
+		glRasterPos2f(382, 400);
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
 		message = "To start or restart the game, press the space key.";
 		glRasterPos2f(170, 550);
+		while (*message)
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
+		message = "You didn't eat all the food, now Packman is hungry!";
+		glRasterPos2f(155, 480); // Position for the notice
+		while (*message)
+			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
+		message = "Try again, you can do it!";
+		glRasterPos2f(260, 510); // Position for the notice
 		while (*message)
 			glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
 	}
@@ -390,53 +442,73 @@ void welcomeScreen(){
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
 	message = "PACMAN - by Patricia Terol";
 	glColor3f(1, 1, 1);
-	glRasterPos2f(225, 250);
+	glRasterPos2f(225, 250); // Position for the first line
 	while (*message)
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
+
+	message = "And forked by Binary Brains";
+	glRasterPos2f(225, 290); // Increased y-coordinate to add space
+	while (*message)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
+
 	message = "*************************************";
-	glRasterPos2f(150, 300);
+	glRasterPos2f(150, 340);
 	while (*message)
 		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
 	message = "To control Pacman use A to go right, D to go left, W to go up and S to go down.";
 	glRasterPos2f(50, 400);
 	while (*message)
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
+	message = "You can also use the arrow keys for movement.";
+	glRasterPos2f(175, 430); // Adjusted y-coordinate to place it below the previous message
+	while (*message)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
+
 	message = "To start or restart the game, press the space key.";
-	glRasterPos2f(170, 450);
+	glRasterPos2f(170, 470);
+	while (*message)
+		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
+
+	message = "Welcome to the world of PACMAN!";
+	glRasterPos2f(200, 100); // Position for the welcome message
+	while (*message)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
+
+	message = "Get ready to have some fun!";
+	glRasterPos2f(240, 150); // Position for the fun message
+	while (*message)
+		glutBitmapCharacter(GLUT_BITMAP_TIMES_ROMAN_24, *message++);
+	message = "Note: Take care of our Packman!";
+	glRasterPos2f(240, 600); // Position for the notice
 	while (*message)
 		glutBitmapCharacter(GLUT_BITMAP_HELVETICA_18, *message++);
 }
 
 //Method to display the screen and its elements
-void display(){
-	if (points == 1){
-		over = false;
-	}
-	keyOperations();
-	glClear(GL_COLOR_BUFFER_BIT);
-	gameOver();
-	if (replay){
-		if (!over){
-			drawLaberynth();
-			drawFood((1.5 + xIncrement) * squareSize, (1.5 + yIncrement) * squareSize);
-			drawPacman(1.5 + xIncrement, 1.5 + yIncrement, rotation);
-			updateMonster(monster1, 1);
-			updateMonster(monster2, 2);
-			updateMonster(monster3, 3);
-			updateMonster(monster4, 4);
-			drawMonster(monster1[0], monster1[1], 0.0, 1.0, 1.0); //cyan
-			drawMonster(monster2[0], monster2[1], 1.0, 0.0, 0.0); //red
-			drawMonster(monster3[0], monster3[1], 1.0, 0.0, 0.6); //magenta
-			drawMonster(monster4[0], monster4[1], 1.0, 0.3, 0.0); //orange
-		}
-		else {
-			resultsDisplay();
-		}
-	}
-	else {
-		welcomeScreen();
-	}
-	glutSwapBuffers();
+void display() {
+    glClear(GL_COLOR_BUFFER_BIT);
+    gameOver();
+    if (replay) {
+        if (!over) {
+            drawLaberynth();
+            drawFood((1.5 + xIncrement) * squareSize, (1.5 + yIncrement) * squareSize);
+            drawPacman(1.5 + xIncrement, 1.5 + yIncrement, rotation);
+            updateMonster(monster1, 1);
+            updateMonster(monster2, 2);
+            updateMonster(monster3, 3);
+            updateMonster(monster4, 4);
+            drawMonster(monster1[0], monster1[1], 0.0, 1.0, 1.0); // cyan
+            drawMonster(monster2[0], monster2[1], 1.0, 0.0, 0.0); // red
+            drawMonster(monster3[0], monster3[1], 1.0, 0.0, 0.6); // magenta
+            drawMonster(monster4[0], monster4[1], 1.0, 0.3, 0.0); // orange
+        } else {
+            resultsDisplay();
+        }
+    } else {
+        welcomeScreen();
+    }
+    keyOperations(); // Ensure this is outside the conditional blocks
+    glutSwapBuffers();
 }
 
 //Methdo to reshape the game is the screen size changes
@@ -449,26 +521,26 @@ void reshape(int w, int h){
 	glLoadIdentity();
 }
 
-
 //Main functions that controls the running of the game
-int main(int argc, char** argv){
-	//initialize and create the screen
-	glutInit(&argc, argv);
-	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
-	glutInitWindowSize(750, 750);
-	glutInitWindowPosition(500, 50);
-	glutCreateWindow("PACMAN - by Patricia Terol");
+int main(int argc, char** argv) {
+    // Initialize and create the screen
+    glutInit(&argc, argv);
+    glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB);
+    glutInitWindowSize(750, 750);
+    glutInitWindowPosition(500, 50);
+    glutCreateWindow("PACMAN - by Patricia Terol");
 
-	//define all the control functions
-	glutDisplayFunc(display);
-	glutReshapeFunc(reshape);
-	glutIdleFunc(display);
-	glutKeyboardFunc(keyPressed);
-	glutKeyboardUpFunc(keyUp);
+    // Define all the control functions
+    glutDisplayFunc(display);
+    glutReshapeFunc(reshape);
+    glutIdleFunc(display);
+    glutKeyboardFunc(keyPressed);
+    glutKeyboardUpFunc(keyUp);
+    glutSpecialFunc(specialKeyPressed); // Register special key press handler
+    glutSpecialUpFunc(specialKeyUp);    // Register special key release handler
 
-	//run the game
-	init();
-	glutMainLoop();
-	return 0;
+    // Run the game
+    init();
+    glutMainLoop();
+    return 0;
 }
-
