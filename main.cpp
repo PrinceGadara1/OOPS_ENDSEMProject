@@ -34,7 +34,7 @@ static vector<vector<bool>> bitmap; // 2d image of which squares are blocked and
 bool* keyStates = new bool[256]; // record of all keys pressed 
 int points = 0; // total points collected
 
-//Initializes the game with the appropiate information 
+//Initializes the game with the appropriate information 
 void init(void){
 	//clear screen
 	glClearColor(0.0, 0.0, 0.0, 0.0);
