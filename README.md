@@ -22,7 +22,10 @@ A simple but fun Pac-Man style game built using **C++** and **OpenGL**, created 
   <img src="GameBoard.png" width="400"/>
 </p>
 
-<img src="Lost.png" width="400"/>
+<p float="left">
+  <img src="Won.png" width="400"/>
+  <img src="Lost.png" width="400"/>
+</p>
 <br/>
 
 ---
